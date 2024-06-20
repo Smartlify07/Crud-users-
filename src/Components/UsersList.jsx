@@ -65,12 +65,14 @@ const UsersList = ({ setUsers, users }) => {
         )}
       </section>
 
-      <DeleteModal
-        id={id}
-        showDeleteModal={showDeleteModal}
-        toggleModal={toggleModal}
-        setUsers={setUsers}
-      />
+      {showDeleteModal && (
+        <DeleteModal
+          id={id}
+          showDeleteModal={showDeleteModal}
+          toggleModal={toggleModal}
+          setUsers={setUsers}
+        />
+      )}
     </>
   );
 };
