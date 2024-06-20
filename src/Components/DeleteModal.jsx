@@ -5,8 +5,8 @@ const DeleteModal = ({ showDeleteModal, toggleModal, id, setUsers }) => {
   console.log(showDeleteModal);
   return (
     <div
-      className={`bg-white blur-none z-10 shadow-lg px-6 py-6 rounded-md -translate-y-[100%] transition-all translate-x-[300%] ${
-        showDeleteModal && `translate-x-[0%]`
+      className={`bg-white blur-none z-10 shadow-lg px-6 py-6 rounded-md -translate-y-[100%] transition-all translate-x-[1000px] ${
+        showDeleteModal && `-translate-x-[10px]`
       }`}
     >
       <h3 className="text-gray-500">
