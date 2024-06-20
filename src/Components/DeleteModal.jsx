@@ -2,6 +2,7 @@ import { deleteUser } from "../functions/deleteUser";
 
 /* eslint-disable react/prop-types */
 const DeleteModal = ({ showDeleteModal, toggleModal, id, setUsers }) => {
+  console.log(showDeleteModal);
   return (
     <div
       className={`bg-white blur-none z-10 shadow-lg px-6 py-6 rounded-md -translate-y-[100%] transition-all translate-x-[300%] ${
