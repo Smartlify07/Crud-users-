@@ -3,13 +3,18 @@ import moment from "moment";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
+import { useSelector } from "react-redux";
+import { selectAllUsers } from "../app/users/usersSlice";
 
-const UsersList = ({ setUsers, users }) => {
+const UsersList = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [id, setId] = useState(null); // Use the current id for the deletemodal
   const toggleModal = () => {
     setShowDeleteModal((prevState) => !prevState);
   };
+
+  const users = useSelector(selectAllUsers);
+
   return (
     <>
       <section
@@ -30,7 +35,7 @@ const UsersList = ({ setUsers, users }) => {
               </tr>
             </thead>
             <tbody className="px-4">
-              {users.map((user) => (
+              {users?.users?.map((user) => (
                 <tr key={user.id} className="text-center  even:bg-slate-50">
                   <td className="border px-4 py-2">{user.name}</td>
                   <td className="border px-4 py-2">{user.age}</td>
@@ -60,17 +65,16 @@ const UsersList = ({ setUsers, users }) => {
           </table>
         }
 
-        {users.length === 0 && (
+        {users.users.length === 0 && (
           <h1 className="text-3xl font-semibold text-slate-900">No users</h1>
         )}
       </section>
 
       {showDeleteModal && (
         <DeleteModal
-          id={id}
+          userId={id}
           showDeleteModal={showDeleteModal}
           toggleModal={toggleModal}
-          setUsers={setUsers}
         />
       )}
     </>

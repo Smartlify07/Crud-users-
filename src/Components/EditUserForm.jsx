@@ -5,10 +5,12 @@ import * as Yup from "yup";
 import TextInput from "./TextInput";
 import AgeUpdate from "./AgeUpdater";
 import Button from "./Button";
-import { editUser } from "../functions/editUser";
+import { useDispatch } from "react-redux";
+import { editUser } from "../app/users/usersSlice";
 
 const EditUserForm = ({ userId, name, age, dob, setUsers }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <>
       <Formik
@@ -19,7 +21,15 @@ const EditUserForm = ({ userId, name, age, dob, setUsers }) => {
         }}
         onSubmit={(values) => {
           console.log(values);
-          editUser(userId, values.name, values.age, values.dob, setUsers);
+          // editUser(userId, values.name, values.age, values.dob, setUsers);
+          dispatch(
+            editUser({
+              userId,
+              name: values.name,
+              age: values.age,
+              dob: values.dob,
+            })
+          );
           navigate("/");
         }}
         validationSchema={Yup.object({

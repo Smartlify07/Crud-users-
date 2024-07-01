@@ -1,8 +1,10 @@
-import { deleteUser } from "../functions/deleteUser";
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../app/users/usersSlice";
 
 /* eslint-disable react/prop-types */
-const DeleteModal = ({ showDeleteModal, toggleModal, id, setUsers }) => {
-  console.log(showDeleteModal);
+const DeleteModal = ({ toggleModal, userId }) => {
+  console.log(userId);
+  const dispatch = useDispatch();
   return (
     <div
       className={`bg-white blur-none z-10 shadow-lg px-6 py-6 rounded-md -translate-y-[100%] transition-all`}
@@ -21,7 +23,11 @@ const DeleteModal = ({ showDeleteModal, toggleModal, id, setUsers }) => {
 
         <button
           onClick={() => {
-            deleteUser(id, setUsers);
+            dispatch(
+              deleteUser({
+                userId,
+              })
+            );
             toggleModal();
           }}
           className="px-4 py-3 rounded-sm text-white bg-red-500 transition-all hover:bg-red-600"

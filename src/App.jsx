@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import RootLayout from "./layout/RootLayout";
 import Create from "./Routes/Create";
 import Edit from "./Routes/Edit";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 function App() {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
@@ -34,7 +36,9 @@ function App() {
   );
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <Provider store={store}>
+        <RouterProvider router={router}></RouterProvider>
+      </Provider>
     </>
   );
 }

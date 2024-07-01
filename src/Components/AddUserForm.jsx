@@ -4,12 +4,13 @@ import * as Yup from "yup";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import AgeUpdate from "./AgeUpdater";
-import { addUser } from "../functions/addUser";
-import { uid } from "uid";
 import { useNavigate } from "react-router-dom";
 
-const AddUserForm = ({ setUsers }) => {
+import { useDispatch } from "react-redux";
+import { addNewUser } from "../app/users/usersSlice";
+const AddUserForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -18,13 +19,14 @@ const AddUserForm = ({ setUsers }) => {
         dob: "",
       }}
       onSubmit={(values) => {
-        const newUser = {
-          id: uid(5),
-          name: values.name,
-          age: values.age,
-          dob: values.dob,
-        };
-        addUser(newUser, setUsers);
+        // const newUser = {
+        //   id: uid(5),
+        //   name: values.name,
+        //   age: values.age,
+        //   dob: values.dob,
+        // };
+        // addUser(newUser, setUsers);
+        dispatch(addNewUser(values.name, values.age, values.dob));
         navigate("/");
       }}
       validationSchema={Yup.object({
